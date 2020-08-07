@@ -28,7 +28,6 @@ app.get('/schedules', (request, response) => {
 
 app.get('/users/:id', function(request, response){
     if (request.params.id <0 || request.params.id >= users.length){
-        /*   response.writeHead(404, {'Content-Type': 'text/plain'});    */
         response.status(404);
         response.end('This user does not exist');
     }
@@ -41,7 +40,6 @@ app.get('/users/:id', function(request, response){
 
 app.get('/users/:id/schedules', function(request, response){
     if (request.params.id <0 || request.params.id >= users.length){
-        /*    response.writeHead(404, {'Content-Type': 'text/plain'});    */
         response.status(404);
         response.end('This user does not exist');
     }
@@ -62,17 +60,11 @@ app.get('/users/:id/schedules', function(request, response){
         }
 
         else {
-            /*
-            response.writeHead(404, {'Content-Type': 'text/plain'});
-            */
-
             response.status(404);
             response.end('This user does not exist');
         }
     }
-
 })
-
 
 app.post('/schedules', function(request, response)  {
 
@@ -84,7 +76,6 @@ app.post('/schedules', function(request, response)  {
         start_at: '(alphaNumeric)',
         end_at: '(alphaNumeric)'
     };
-
         
 //if (newSchedule.user_id && newSchedule.day && newSchedule.start_at && newSchedule.end_at) 
     if (jpv.validate(newSchedule, schedulPattern)) {
@@ -96,7 +87,6 @@ app.post('/schedules', function(request, response)  {
     }
 
 })
-
 
 app.post('/users', function(request, response)  {
 
@@ -115,13 +105,7 @@ app.post('/users', function(request, response)  {
     };
 
     // if (jpv.validate(newUsData, userPattern))
-
-    
-
-
-
-//if (newUsData.firstname && newUsData.lastname && newUsData.email && newUsData.password)
-    
+   
     if (newUsData.firstname && newUsData.lastname && newUsData.email && newUsData.password) {    
 
         var newuser = {firstname: newUsData["firstname"], lastname: newUsData["lastname"], email: newUsData["email"]};
@@ -137,15 +121,12 @@ app.post('/users', function(request, response)  {
         // ajouter le json aux résultats
         users.push(newuser);
         response.send(newuser);
-
     }
 
     else { response.send("Please enter a proper schedule");
     }
 
 })
-
-
 
 
 app.listen(port, function() {
