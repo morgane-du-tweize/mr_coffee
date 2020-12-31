@@ -77,7 +77,6 @@ app.post('/schedules', function(request, response)  {
         end_at: '(alphaNumeric)'
     };
         
-//if (newSchedule.user_id && newSchedule.day && newSchedule.start_at && newSchedule.end_at) 
     if (jpv.validate(newSchedule, schedulPattern)) {
         schedules.push(newSchedule);
         response.send(newSchedule);
@@ -90,10 +89,6 @@ app.post('/schedules', function(request, response)  {
 
 app.post('/users', function(request, response)  {
 
-    /*
-    Attention, le mot de passe de l’utilisateur devra être encrypté en SHA256.*/
-
-    // VÉRIFIER  que ça convienne c'est à dire du sha256 et pas quelque chose de tout pourri
     var newUsData = request.body ;
     console.log(newUsData);
 
@@ -104,7 +99,6 @@ app.post('/users', function(request, response)  {
         password: '(alphaNumeric)'
     };
 
-    // if (jpv.validate(newUsData, userPattern))
    
     if (newUsData.firstname && newUsData.lastname && newUsData.email && newUsData.password) {    
 
@@ -132,19 +126,3 @@ app.post('/users', function(request, response)  {
 app.listen(port, function() {
     console.log(`Example app listening at http://localhost:${port}`);
   })
-
-/*
-Errors are handled by one or more special middleware functions that have four arguments, instead of the usual three: (err, req, res, next). For example:
-
-app.use(function(err, req, res, next) {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
-});
-
-
-j'aimerais daire une gestion d'erreurs personnalisée 
-entre autres faire un if (...) sur le path
-le truc c'est que jusqu'à présent je n'qarrive pas à récupérer le path dans une variable
-
-
-*/
